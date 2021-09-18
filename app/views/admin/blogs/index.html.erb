@@ -1,0 +1,35 @@
+<h4>Blogs</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Piece Title</th>
+      <th scope="col">Outline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <%= tag.tr "data-href" => admin_blog_path(blog), onclick: "getRequestHander(event)" do %>
+        <%= tag.th blog.id, scope: "row" %>
+        <%= tag.td blog.title %>
+        <%= tag.td blog.piece_title %>
+        <%= tag.td blog.outline %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Blog', new_admin_blog_path, class: 'btn btn-primary' %>
+
+
+<%= content_for :script do %>
+  <script>
+    const getRequestHander = (e) => {
+      const element = e.currentTarget;
+      const href = element.dataset.href
+      document.location.href = href;
+    }
+  </script>
+<% end %>

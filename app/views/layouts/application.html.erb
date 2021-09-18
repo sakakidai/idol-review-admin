@@ -21,17 +21,19 @@
 
         <!-- Page Content Main -->
         <%= tag.div id: 'main-content' do %>
+          <%= render 'layouts/flash' %>
           <%= yield %>
         <% end %>
       </div>
     </div>
   </body>
-  <script>
+  <script data-turbolinks-eval=false>
     const sidebarCollapse = (e) => {
-      currnetElement = e.target;
+      currnetElement = e.currentTarget;
       sidebarElement = document.getElementById('sidebar');
       currnetElement.classList.toggle('active');
       sidebarElement.classList.toggle('active');
     };
   </script>
+  <%= yield :script if content_for? :script %>
 </html>

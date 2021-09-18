@@ -1,0 +1,6 @@
+<% flash.each do |key, value| %>
+  <%= tag.div class: "alert-#{key} alert alert-dismissible fade show", role: 'alert' do %>
+    <%= value %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <% end %>
+<% end %>
