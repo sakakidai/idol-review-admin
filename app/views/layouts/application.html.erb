@@ -6,11 +6,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <!-- Sidebar Holder -->
+      <%= render 'layouts/sidebar' %>
+
+      <div id="content">
+        <!-- Page Content Holder -->
+        <%= render 'layouts/navbar', sidebarCollapseHandler: "sidebarCollapse(event)" %>
+
+        <!-- Page Content Main -->
+        <%= tag.div id: 'main-content' do %>
+          <%= yield %>
+        <% end %>
+      </div>
+    </div>
   </body>
+  <script>
+    const sidebarCollapse = (e) => {
+      currnetElement = e.target;
+      sidebarElement = document.getElementById('sidebar');
+      currnetElement.classList.toggle('active');
+      sidebarElement.classList.toggle('active');
+    };
+  </script>
 </html>
