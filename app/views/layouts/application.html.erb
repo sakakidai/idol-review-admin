@@ -8,6 +8,15 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+      const sidebarCollapse = (e) => {
+        currnetElement = e.currentTarget;
+        sidebarElement = document.getElementById('sidebar');
+        currnetElement.classList.toggle('active');
+        sidebarElement.classList.toggle('active');
+      };
+    </script>
+    <%= yield :script if content_for? :script %>
   </head>
 
   <body>
@@ -27,13 +36,4 @@
       </div>
     </div>
   </body>
-  <script data-turbolinks-eval=false>
-    const sidebarCollapse = (e) => {
-      currnetElement = e.currentTarget;
-      sidebarElement = document.getElementById('sidebar');
-      currnetElement.classList.toggle('active');
-      sidebarElement.classList.toggle('active');
-    };
-  </script>
-  <%= yield :script if content_for? :script %>
 </html>

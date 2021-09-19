@@ -23,13 +23,14 @@
 
 <%= link_to 'Add Blog', new_admin_blog_path, class: 'btn btn-primary' %>
 
-
 <%= content_for :script do %>
   <script>
-    const getRequestHander = (e) => {
-      const element = e.currentTarget;
-      const href = element.dataset.href
-      document.location.href = href;
-    }
+  　document.addEventListener("turbolinks:load", function(){
+      const getRequestHander = (e) => {
+        const element = e.currentTarget;
+        const href = element.dataset.href
+        document.location.href = href;
+      }
+    })
   </script>
 <% end %>

@@ -1,0 +1,39 @@
+<h4>Idols</h4>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col" >Name</th>
+      <th scope="col" width="260">Image</th>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @idols.each do |idol| %>
+      <%= tag.tr "data-href" => admin_idol_path(idol), onclick: "getRequestHander(event)" do %>
+        <%= tag.th idol.id, scope: "row" %>
+        <%= tag.td idol.name %>
+        <%= tag.td do %>
+          <%= image_tag idol.image.url, class: 'img-fluid' %>
+        <% end %>
+        <%= tag.td idol.birth_date %>
+        <%= tag.td idol.comment %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Idol', new_admin_idol_path, class: 'btn btn-primary' %>
+
+
+<%= content_for :script do %>
+  <script>
+    const getRequestHander = (e) => {
+      const element = e.currentTarget;
+      const href = element.dataset.href
+      document.location.href = href;
+    }
+  </script>
+<% end %>

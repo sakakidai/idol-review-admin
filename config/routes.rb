@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :idols
+  end
+  namespace :admin do
     resources :blogs
   end
   namespace :admin do
