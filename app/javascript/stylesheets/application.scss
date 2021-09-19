@@ -227,3 +227,20 @@ a.article, a.article:hover {
   color: $red-500;
   border-color: $red-500;
 }
+
+#thumbnail_preview {
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.img_wrap{
+  margin: 0 auto;
+  overflow: hidden;
+  background: #000;
+}
+
+#thumbnail_preview:hover {
+  opacity: 0.6;
+  transition-duration: 0.3s;
+}
+
