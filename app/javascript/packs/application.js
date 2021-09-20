@@ -40,11 +40,21 @@ const imageFileInputHandler = (event, jquery=false) => {
   };
 };
 
+const sidebarCollapseHandler = (event) => {
+  const currnetElement = event.currentTarget;
+  const sidebarElement = document.getElementById('sidebar');
+  currnetElement.classList.toggle('active');
+  sidebarElement.classList.toggle('active');
+};
+
 document.addEventListener("turbolinks:load", () => {
   const previewForms = document.querySelectorAll('.preview_form');
   previewForms.forEach(previewForm => {
     previewForm.addEventListener('change', e => imageFileInputHandler(e));
   });
+
+  const sidebarCollapse = document.getElementById('sidebar_collapse');
+  sidebarCollapse.addEventListener('click', e => sidebarCollapseHandler(e));
 });
 
 jQuery(document).on('turbolinks:load', () => {
