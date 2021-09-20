@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @idols.each do |idol| %>
-      <%= tag.tr "data-href" => admin_idol_path(idol), onclick: "getRequestHander(event)" do %>
+      <%= tag.tr "data-href" => admin_idol_path(idol), class: 'table_list' do %>
         <%= tag.th idol.id, scope: "row" %>
         <%= tag.td idol.name %>
         <%= tag.td do %>
@@ -27,13 +27,3 @@
 
 <%= link_to 'Add Idol', new_admin_idol_path, class: 'btn btn-primary' %>
 
-
-<%= content_for :script do %>
-  <script>
-    const getRequestHander = (e) => {
-      const element = e.currentTarget;
-      const href = element.dataset.href
-      document.location.href = href;
-    }
-  </script>
-<% end %>

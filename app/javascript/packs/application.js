@@ -47,6 +47,12 @@ const sidebarCollapseHandler = (event) => {
   sidebarElement.classList.toggle('active');
 };
 
+const tableDetailRedirectHandler = (event) => {
+  const element = event.currentTarget;
+  const href = element.dataset.href
+  document.location.href = href;
+}
+
 document.addEventListener("turbolinks:load", () => {
   const previewForms = document.querySelectorAll('.preview_form');
   previewForms.forEach(previewForm => {
@@ -55,6 +61,11 @@ document.addEventListener("turbolinks:load", () => {
 
   const sidebarCollapse = document.getElementById('sidebar_collapse');
   sidebarCollapse.addEventListener('click', e => sidebarCollapseHandler(e));
+
+  const tableList = document.querySelector('.table_list');
+  if (tableList) {
+    tableList.addEventListener('click', e => tableDetailRedirectHandler(e));
+  };
 });
 
 jQuery(document).on('turbolinks:load', () => {
