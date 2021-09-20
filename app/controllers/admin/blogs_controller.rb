@@ -10,6 +10,7 @@ class Admin::BlogsController < ApplicationController
 
   def new
     @blog = Blog.new(idol_id: params[:idol_id])
+    @blog.content_images.build
   end
 
   def edit
@@ -17,6 +18,7 @@ class Admin::BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
+    @blog.content_images.build if @blog.content_images.blank?
 
     if @blog.save
       redirect_to admin_blog_path(@blog), flash: {success: "Blog was successfully created."}
@@ -44,6 +46,6 @@ class Admin::BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:idol_id, :title, :piece_title, :outline, :thumbnail, :thumbnail_cache, content_images_attributes: [:id, :image, :comment, :_destroy])
+      params.require(:blog).permit(:idol_id, :title, :piece_title, :outline, :thumbnail, :thumbnail_cache, content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy])
     end
 end

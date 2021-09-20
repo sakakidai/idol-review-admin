@@ -20,7 +20,7 @@ ActiveStorage.start()
 const imageFileInputHandler = (event, jquery=false) => {
   const currnetElement = jquery ? event.target : event.currentTarget;
   const defaultUrl = currnetElement.dataset.defaultUrl;
-  const parentElement = currnetElement.parentNode;
+  const parentElement = currnetElement.closest('label');
   const previewElement = parentElement.querySelector('img.preview');
   const fileNameElement = parentElement.querySelector('span.preview_filename');
   const selectedfiles = currnetElement.files;
