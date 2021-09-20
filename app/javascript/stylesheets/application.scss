@@ -228,19 +228,19 @@ a.article, a.article:hover {
   border-color: $red-500;
 }
 
-.form_preview {
+.preview {
   cursor: pointer;
   transition-duration: 0.3s;
   display: block;
 }
 
-.form_preview_wrap{
+.preview_wrap{
   margin: 0 auto;
   overflow: hidden;
   background: #000;
 }
 
-.form_preview:hover {
+.preview:hover {
   opacity: 0.6;
   transition-duration: 0.3s;
 }

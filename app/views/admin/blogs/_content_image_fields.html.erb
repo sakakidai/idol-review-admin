@@ -1,0 +1,20 @@
+<div class='nested-fields col-sm-6 col-md-4'>
+  <% content_image = f.object %>
+
+  <div class="mb-3">
+    <%= f.label :image do %>
+      <%= tag.div class: 'preview_wrap' do %>
+        <%= image_tag content_image.image_url, class: 'img-fluid preview', style: "#{disabled ? 'pointer-events: none;' : ''}" %>
+      <% end %>
+      <%= f.file_field :image, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => BlogContentImageUploader.default_url %>
+      <%= f.hidden_field :image_cache %>
+      <%= tag.span content_image.image.identifier || 'No Image', class: 'text-secondary preview_filename' %>
+    <% end %>
+  </div>
+
+  <div class="field mb-3">
+    <%= f.text_area :comment, class: 'form-control' %>
+  </div>
+  <%= link_to_remove_association "Delete", f, class: 'btn btn-danger mx-2 px-4' %>
+</div>
+

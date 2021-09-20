@@ -5,6 +5,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Title</th>
+      <th scope="col" width="260">thumbnail</th>
       <th scope="col">Piece Title</th>
       <th scope="col">Outline</th>
     </tr>
@@ -14,6 +15,9 @@
       <%= tag.tr "data-href" => admin_blog_path(blog), onclick: "getRequestHander(event)" do %>
         <%= tag.th blog.id, scope: "row" %>
         <%= tag.td blog.title %>
+        <%= tag.td do %>
+          <%= image_tag blog.thumbnail.url, class: 'img-fluid' %>
+        <% end %>
         <%= tag.td blog.piece_title %>
         <%= tag.td blog.outline %>
       <% end %>
@@ -25,12 +29,10 @@
 
 <%= content_for :script do %>
   <script>
-  　document.addEventListener("turbolinks:load", function(){
-      const getRequestHander = (e) => {
-        const element = e.currentTarget;
-        const href = element.dataset.href
-        document.location.href = href;
-      }
-    })
+    const getRequestHander = (e) => {
+      const element = e.currentTarget;
+      const href = element.dataset.href
+      document.location.href = href;
+    }
   </script>
 <% end %>

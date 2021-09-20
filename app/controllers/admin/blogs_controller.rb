@@ -9,7 +9,7 @@ class Admin::BlogsController < ApplicationController
   end
 
   def new
-    @blog = Blog.new
+    @blog = Blog.new(idol_id: params[:idol_id])
   end
 
   def edit
@@ -44,6 +44,6 @@ class Admin::BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :piece_title, :outline, :thumbnail, :thumbnail_cache)
+      params.require(:blog).permit(:idol_id, :title, :piece_title, :outline, :thumbnail, :thumbnail_cache, content_images_attributes: [:id, :image, :comment, :_destroy])
     end
 end

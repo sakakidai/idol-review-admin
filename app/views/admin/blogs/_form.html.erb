@@ -12,18 +12,23 @@
   <% end %>
 
   <div class="mb-3">
+    <%= f.label :idol_id, class: 'form-label' %>
+    <%= f.collection_select :idol_id, Idol.all, :id, :name, {prompt: "選択してください"}, {class: 'form-select', disabled: disabled} %>
+  </div>
+
+  <div class="mb-3">
     <%= f.label :title, class: 'form-label' %>
     <%= f.text_field :title, class: 'form-control', placeholder: 'ブログのタイトル', disabled: disabled %>
   </div>
   <div class="mb-3">
     <%= tag.p 'thumbnail', class: "text-reset mb-2" %>
     <%= f.label :thumbnail do %>
-      <%= tag.div class: 'form_preview_wrap' do %>
-        <%= image_tag blog.thumbnail_url, id: 'thumbnail_preview', class: 'img-fluid form_preview', style: "#{disabled ? 'pointer-events: none;' : ''}" %>
+      <%= tag.div class: 'preview_wrap' do %>
+        <%= image_tag blog.thumbnail_url, class: 'img-fluid preview', style: "#{disabled ? 'pointer-events: none;' : ''}" %>
       <% end %>
-      <%= f.file_field :thumbnail, class: 'form-control', style: 'display:none', onchange: "fileInputHandler(event, 'thumbnail', '#{BlogThumbnailUploader.default_url}')", disabled: disabled %>
+      <%= f.file_field :thumbnail, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => IdolImageUploader.default_url %>
       <%= f.hidden_field :thumbnail_cache %>
-      <%= tag.span blog.thumbnail.identifier || 'No Image', id: 'thumbnail_preview_name', class: 'text-secondary' %>
+      <%= tag.span blog.thumbnail.identifier || 'No Image', class: 'text-secondary preview_filename' %>
     <% end %>
   </div>
   <div class="mb-3">
@@ -35,6 +40,17 @@
     <%= f.text_area :outline, class: 'form-control', placeholder: '概要', disabled: disabled %>
   </div>
   <div class="mb-3">
+    <%= tag.p 'Content Images', class: "text-reset mb-2" %>
+    <div id='content_images', class="row">
+      <%= f.fields_for :content_images do |content_image| %>
+        <%= render 'content_image_fields', {f: content_image, disabled: disabled} %>
+      <% end %>
+      <div class='links my-3'>
+        <%= link_to_add_association 'Add', f, :content_images, class: 'btn btn-primary mx-2 px-4', render_options: {locals: {disabled: disabled}} %>
+      </div>
+    </div>
+  </div>
+  <div class="my-5">
     <%= f.submit nil, class: 'btn btn-primary mx-2 px-4' if !disabled %>
     <% if action_name == 'show' %>
       <%= link_to 'Edit', edit_admin_blog_path(blog), class: 'btn btn-primary mx-2 px-4' %>
@@ -42,33 +58,4 @@
     <% end %>
     <%= link_to 'Back', back_url, class: 'btn btn-secondary mx-2 px-4' %>
   </div>
-<% end %>
-
-<%= content_for :script do %>
-  <script data-turbolinks-eval=false>
-    const fileInputHandler = (e, model, default_url) => {
-      console.log(default_url);
-      const currnetElement = e.currentTarget;
-      console.log(currnetElement);
-      const previewElement = document.getElementById(`${model}_preview`);
-      const fileNameElement = document.getElementById(`${model}_preview_name`);
-      const selectedfiles = currnetElement.files;
-
-      if (selectedfiles.length === 0) {
-        previewElement.src = default_url;
-        fileNameElement.textContent = 'No Image';
-        return;
-      }
-
-      for (let i = 0; i < selectedfiles.length; i++) {
-        const file = selectedfiles[i];
-        const reader = new FileReader();
-        reader.onloadend = function() {
-          previewElement.src = reader.result;
-        };
-        reader.readAsDataURL(file);
-        fileNameElement.textContent = file.name;
-      };
-    };
-  </script>
 <% end %>
