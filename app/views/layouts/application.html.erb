@@ -8,6 +8,8 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'module', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag javascript_path, 'data-turbolinks-track': 'reload' if javascript_file_exist?(javascript_path)%>
   </head>
 
   <body>

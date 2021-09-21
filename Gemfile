@@ -54,3 +54,4 @@ gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
 gem 'config'
 gem "cocoon"
+gem 'acts-as-taggable-on', '~> 8.0'
