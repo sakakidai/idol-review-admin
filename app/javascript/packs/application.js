@@ -9,9 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap';
 import '../stylesheets/application';
-
-require("jquery")
-require("@nathanvda/cocoon")
+import '@yaireo/tagify';
+import '@yaireo/tagify/src/tagify.scss';
+import 'jquery';
+import '@nathanvda/cocoon';
 
 Rails.start()
 Turbolinks.start()
