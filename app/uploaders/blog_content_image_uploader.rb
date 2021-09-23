@@ -19,7 +19,7 @@ class BlogContentImageUploader < CarrierWave::Uploader::Base
   end
 
   def self.default_url
-    Settings.base_url + '/images/noimage.png'
+    Settings.app.base_url + '/images/noimage.png'
   end
 
   # Process files as they are uploaded:

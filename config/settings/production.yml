@@ -1,0 +1,5 @@
+app:
+  base_url: ''
+sidekiq:
+  redis_host: ''
+  redis_port: ''

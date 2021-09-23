@@ -44,6 +44,7 @@ group :development do
   gem 'spring'
 
   gem 'pry-byebug'
+  gem 'dotenv-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -55,3 +56,5 @@ gem "mini_magick"
 gem 'config'
 gem "cocoon"
 gem 'acts-as-taggable-on', '~> 8.0'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'

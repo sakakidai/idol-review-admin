@@ -1,1 +1,5 @@
-base_url: 'http://localhost:3001'
+app:
+  base_url: 'http://localhost:3001'
+sidekiq:
+  redis_host: 'redis'
+  redis_port: '6380'
