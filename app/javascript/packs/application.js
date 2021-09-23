@@ -12,7 +12,6 @@ import '../stylesheets/application';
 import '@yaireo/tagify';
 import '@yaireo/tagify/src/tagify.scss';
 import 'jquery';
-import '@nathanvda/cocoon';
 
 Rails.start()
 Turbolinks.start()

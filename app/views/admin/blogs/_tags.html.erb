@@ -1,0 +1,13 @@
+<% blog = f.object %>
+<% tag_list = context + '_list' %>
+<% if action_name == 'show' %>
+  <%= tag.label "#{context.capitalize} list", class: "form-label fs-5" %>
+  <%= tag.div do %>
+    <% blog.tag_counts_on("#{context.pluralize.to_sym}").each do |tag_object| %>
+      <%= tag.span tag_object.name, class: "badge rounded-pill bg-#{bg_color} fs-6 px-3 py-2 fw-normal" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <%= f.label "#{tag_list.to_sym}", class: 'form-label fs-5' %>
+  <%= f.text_field "#{tag_list.to_sym}", value: blog.send("#{tag_list}").join(','), class: "form-control", disabled: disabled %>
+<% end %>

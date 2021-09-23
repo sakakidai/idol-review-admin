@@ -1,4 +1,5 @@
 import { imageFileInputHandler } from '../../module';
+import '@nathanvda/cocoon';
 import Tagify from '@yaireo/tagify';
 
 document.addEventListener("turbolinks:load", () => {
@@ -7,8 +8,14 @@ document.addEventListener("turbolinks:load", () => {
     previewForm.addEventListener('change', e => imageFileInputHandler(e));
   });
 
-  const input = document.querySelector("input[name='blog[tag_list]']");
-  new Tagify(input);
+  const GenreInput = document.querySelector("input[name='blog[genre_list]']");
+  const DistributorInput = document.querySelector("input[name='blog[distributor_list]']");
+  new Tagify(GenreInput, {
+    originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+  });
+  new Tagify(DistributorInput, {
+    originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+  });
 });
 
 jQuery(document).on('turbolinks:load', () => {

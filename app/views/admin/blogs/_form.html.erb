@@ -12,19 +12,21 @@
   <% end %>
 
   <div class="mb-3">
-    <%= f.label :idol_id, class: 'form-label' %>
+    <%= f.label :idol_id, class: 'form-label fs-5' %>
     <%= f.collection_select :idol_id, Idol.all, :id, :name, {prompt: "選択してください"}, {class: 'form-select', disabled: disabled} %>
   </div>
   <div class="mb-3">
-    <%= f.label :tag_list, class: 'form-label' %>
-    <%= f.text_field :tag_list, value: blog.tag_list.join(','), class: "form-control" %>
+    <%= render 'tags', {f: f, context: 'genre', bg_color: 'primary', disabled: disabled} %>
   </div>
   <div class="mb-3">
-    <%= f.label :title, class: 'form-label' %>
+    <%= render 'tags', {f: f, context: 'distributor', bg_color: 'secondary', disabled: disabled} %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :title, class: 'form-label fs-5' %>
     <%= f.text_field :title, class: 'form-control', placeholder: 'ブログのタイトル', disabled: disabled %>
   </div>
   <div class="mb-3">
-    <%= tag.p 'thumbnail', class: "text-reset mb-2" %>
+    <%= tag.label 'Thumbnail', class: "form-label fs-5" %>
     <%= f.label :thumbnail do %>
       <%= tag.div class: 'preview_wrap' do %>
         <%= image_tag blog.thumbnail_url, class: 'img-fluid preview', style: "#{disabled ? 'pointer-events: none;' : ''}" %>
@@ -35,22 +37,24 @@
     <% end %>
   </div>
   <div class="mb-3">
-    <%= f.label :piece_title, class: 'form-label' %>
+    <%= f.label :piece_title, class: 'form-label fs-5' %>
     <%= f.text_field :piece_title, class: 'form-control', placeholder: 'DVDのタイトル', disabled: disabled  %>
   </div>
   <div class="mb-3">
-    <%= f.label :outline, class: 'form-label' %>
+    <%= f.label :outline, class: 'form-label fs-5' %>
     <%= f.text_area :outline, class: 'form-control', placeholder: '概要', disabled: disabled %>
   </div>
   <div class="mb-3">
-    <%= tag.p 'Content Images', class: "text-reset mb-2" %>
+    <%= tag.label 'Content images', class: "form-label fs-5" %>
     <div id='content_images', class="row">
       <%= f.fields_for :content_images do |content_image| %>
         <%= render 'content_image_fields', {f: content_image, disabled: disabled} %>
       <% end %>
-      <div class='links my-3'>
-        <%= link_to_add_association 'Add', f, :content_images, class: 'btn btn-primary mx-2 px-4', render_options: {locals: {disabled: disabled}} %>
-      </div>
+      <% if !disabled %>
+        <div class='links my-3'>
+          <%= link_to_add_association 'Add', f, :content_images, class: 'btn btn-primary mx-2 px-4', render_options: {locals: {disabled: disabled}} %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="my-5">

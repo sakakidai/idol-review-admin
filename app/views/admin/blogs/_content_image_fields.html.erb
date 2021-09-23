@@ -13,8 +13,10 @@
   </div>
 
   <div class="field mb-3">
-    <%= f.text_area :comment, class: 'form-control' %>
+    <%= f.text_area :comment, class: 'form-control', disabled: disabled %>
   </div>
-  <%= link_to_remove_association "Delete", f, class: 'btn btn-danger mx-2 px-4' %>
+  <% if !disabled %>
+    <%= link_to_remove_association "Delete", f, class: "btn btn-danger mx-2 px-4" %>
+  <% end %>
 </div>
 

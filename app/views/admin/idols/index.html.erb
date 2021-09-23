@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @idols.each do |idol| %>
-      <%= tag.tr "data-href" => admin_idol_path(idol), class: 'table_list' do %>
+      <%= tag.tr "data-href" => admin_idol_path(idol), class: 'table_item' do %>
         <%= tag.th idol.id, scope: "row" %>
         <%= tag.td idol.name %>
         <%= tag.td do %>
