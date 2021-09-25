@@ -1,5 +1,8 @@
 require_relative "boot"
 
+# add require
+require_relative "logger_formatter"
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -46,5 +49,16 @@ module BlogApi
       g.helper false
       g.test_framework false
     end
+
+    # Set log
+    config.log_formatter = Logger::Formatter.new
+    config.log_tags = [->(req){req.uuid.first(10)}, :remote_ip]
+    config.paths['log'] = "log/#{Rails.env}_#{ENV['HOSTNAME']}_web.log"
+    logger = ActiveSupport::Logger.new(config.paths['log'].first)
+    logger.formatter = Logger::Formatter.new
+
+
+    # Set adapter
+    config.active_job.queue_adapter = :sidekiq
   end
 end

@@ -1,11 +1,9 @@
-:verbose: false
-:logfile: ./log/sidekiq.log
 :concurrency: 10
 :queues:
   - [high, 9]
   - [default, 5]
 
 :schedule:
-  AgeCalculateWorker:
+  AgeCalculateJob:
     cron: '0 0 12 * * *'
 
