@@ -19,7 +19,7 @@
     <%= tag.p 'image', class: "text-reset mb-2" %>
     <%= f.label :image do %>
       <%= tag.div class: 'preview_wrap' do %>
-        <%= image_tag idol.image_url, class: 'img-fluid preview', style: "#{disabled ? 'pointer-events: none;' : ''}" %>
+        <%= image_tag idol.image.thumb.url, class: 'preview', style: "#{disabled ? 'pointer-events: none;' : ''}", width: 150, height: 150 %>
       <% end %>
       <%= f.file_field :image, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => IdolImageUploader.default_url %>
       <%= f.hidden_field :image_cache %>

@@ -28,9 +28,11 @@ class BlogThumbnailUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process resize_to_fit: [50, 50]
-  # end
+  version :thumb do
+    # process resize_to_limit: [1600, 900]
+    process resize_to_fill: [1600, 900, "Center"]
+    process convert: 'png'
+  end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
