@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  IMAGE_UPLOAD_LIMIT = 5
+
   mount_uploader :thumbnail, BlogThumbnailUploader
 
   acts_as_taggable_on :genres, :distributors
@@ -10,4 +12,11 @@ class Blog < ApplicationRecord
   validates :piece_title, presence: true
   validates :outline, presence: true
   validates :thumbnail, presence: true
+  validate :thumbnail_size
+
+  def thumbnail_size
+    if thumbnail.size > IMAGE_UPLOAD_LIMIT.megabytes
+      errors.add(:thumbnail, "You cannot upload a file greater than #{IMAGE_UPLOAD_LIMIT}MB")
+    end
+  end
 end

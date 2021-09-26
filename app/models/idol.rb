@@ -1,10 +1,13 @@
 class Idol < ApplicationRecord
+  IMAGE_UPLOAD_LIMIT = 5
+
   mount_uploader :image, IdolImageUploader
 
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :comment, presence: true
   validates :image, presence: true
+  validate :image_size
 
   before_create :set_calculate_age
 
@@ -15,5 +18,11 @@ class Idol < ApplicationRecord
   def update_age
     set_calculate_age
     save!
+  end
+
+  def image_size
+    if image.size > IMAGE_UPLOAD_LIMIT.megabytes
+      errors.add(:image, "You cannot upload a file greater than #{IMAGE_UPLOAD_LIMIT}MB")
+    end
   end
 end

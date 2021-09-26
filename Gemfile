@@ -58,3 +58,4 @@ gem "cocoon"
 gem 'acts-as-taggable-on', '~> 8.0'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
+gem 'fog-aws'
