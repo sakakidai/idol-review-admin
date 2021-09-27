@@ -3,7 +3,7 @@ module Api
     class IdolsController < ApiController
       def index
         idols = Idol.all
-        render json: { idols: idols }, status: :ok
+        render json: idols, each_serializer: Api::V1::IdolSerializer
       end
     end
   end

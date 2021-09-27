@@ -5,6 +5,7 @@ class Blog < ApplicationRecord
 
   acts_as_taggable_on :genres, :distributors
 
+  belongs_to :idol
   has_many :content_images, class_name: 'BlogContentImage', foreign_key: :blog_id, inverse_of: :blog
   accepts_nested_attributes_for :content_images, reject_if: :all_blank, allow_destroy: true
 
