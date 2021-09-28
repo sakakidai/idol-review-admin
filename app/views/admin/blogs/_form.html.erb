@@ -41,6 +41,10 @@
     <%= f.text_field :piece_title, class: 'form-control', placeholder: 'DVDのタイトル', disabled: disabled  %>
   </div>
   <div class="mb-3">
+    <%= f.label :piece_release_on, class: 'form-label fs-5' %>
+    <%= f.date_field :piece_release_on, class: 'form-control', disabled: disabled  %>
+  </div>
+  <div class="mb-3">
     <%= f.label :outline, class: 'form-label fs-5' %>
     <%= f.text_area :outline, class: 'form-control', placeholder: '概要', disabled: disabled %>
   </div>

@@ -13,6 +13,7 @@ class Blog < ApplicationRecord
   validates :piece_title, presence: true
   validates :outline, presence: true
   validates :thumbnail, presence: true
+  validates :piece_release_on, presence: true
   validate :thumbnail_size
 
   def thumbnail_size
