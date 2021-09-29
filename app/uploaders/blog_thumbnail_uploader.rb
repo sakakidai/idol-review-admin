@@ -34,6 +34,12 @@ class BlogThumbnailUploader < CarrierWave::Uploader::Base
     process convert: 'png'
   end
 
+  version :list_item do
+    # process resize_to_limit: [800, 450]
+    process resize_to_fill: [800, 450, "Center"]
+    process convert: 'png'
+  end
+
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
