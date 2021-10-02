@@ -9,7 +9,7 @@ module Api
       attribute(:distributor_list) { object.distributor_list}
 
       belongs_to :idol
-      has_many :content_images, class_name: 'BlogContentImage', foreign_key: :blog_id, inverse_of: :blog
+      has_many :content_images, serializer: Api::V1::BlogContentImageSerializer
 
       def thumbnail
         if Rails.env.production?

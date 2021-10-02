@@ -4,12 +4,35 @@ module Api
       before_action :set_blog, only: %i[ show ]
 
       def index
-        blogs = Blog.all
-        render json: blogs, each_serializer: BlogSerializer, include: [:idol]
+        blogs = params[:tag].blank? ? Blog.all : Blog.tagged_with(params[:tag])
+        idols = Idol.all
+        genre_list = Blog.tags_on(:genres)
+        distributor_list = Blog.tags_on(:distributors)
+
+        # include: [:idol, :content_images] は省略
+        serialized_blogs = ActiveModelSerializers::SerializableResource.new(blogs, each_serializer: Api::V1::BlogSerializer, template: 'index')
+        serialized_idols = ActiveModelSerializers::SerializableResource.new(idols, each_serializer: Api::V1::IdolSerializer)
+
+        render json: {
+          blogs: serialized_blogs,
+          idols: serialized_idols,
+          genre_list: genre_list,
+          distributor_list: distributor_list,
+        }
       end
 
       def show
-        render json: @blog, serializer: BlogSerializer, include: [:idol, :content_images]
+        genre_list = Blog.tags_on(:genres)
+        distributor_list = Blog.tags_on(:distributors)
+
+        # include: [:idol, :content_images] は省略
+        serialized_blog = ActiveModelSerializers::SerializableResource.new(@blog, serializer: Api::V1::BlogSerializer, template: 'show')
+
+        render json: {
+          blog: serialized_blog,
+          genre_list: genre_list,
+          distributor_list: distributor_list,
+        }
       end
 
       private
