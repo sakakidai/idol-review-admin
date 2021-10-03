@@ -12,12 +12,14 @@ module Api
         # include: [:idol, :content_images] は省略
         serialized_blogs = ActiveModelSerializers::SerializableResource.new(blogs, each_serializer: Api::V1::BlogSerializer, template: 'index')
         serialized_idols = ActiveModelSerializers::SerializableResource.new(idols, each_serializer: Api::V1::IdolSerializer)
+        serialized_genre_list = ActiveModelSerializers::SerializableResource.new(genre_list, each_serializer: Api::V1::TagSerializer)
+        serialized_distributor_list = ActiveModelSerializers::SerializableResource.new(distributor_list, each_serializer: Api::V1::TagSerializer)
 
         render json: {
           blogs: serialized_blogs,
           idols: serialized_idols,
-          genre_list: genre_list,
-          distributor_list: distributor_list,
+          genreList: serialized_genre_list,
+          distributorList: serialized_distributor_list,
         }
       end
 
@@ -27,11 +29,13 @@ module Api
 
         # include: [:idol, :content_images] は省略
         serialized_blog = ActiveModelSerializers::SerializableResource.new(@blog, serializer: Api::V1::BlogSerializer, template: 'show')
+        serialized_genre_list = ActiveModelSerializers::SerializableResource.new(genre_list, each_serializer: Api::V1::TagSerializer)
+        serialized_distributor_list = ActiveModelSerializers::SerializableResource.new(distributor_list, each_serializer: Api::V1::TagSerializer)
 
         render json: {
           blog: serialized_blog,
-          genre_list: genre_list,
-          distributor_list: distributor_list,
+          genreList: serialized_genre_list,
+          distributorList: serialized_distributor_list,
         }
       end
 
