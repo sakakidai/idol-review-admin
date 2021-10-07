@@ -61,6 +61,16 @@
       <% end %>
     </div>
   </div>
+
+  <div class="mb-3">
+    <%= tag.label 'Published?', class: "form-label fs-5" %>
+    <div style="display:block;">
+      <%= f.collection_radio_buttons :published, [[true, 'publish'], [false, 'unpublish']], :first, :last do |b| %>
+        <%= b.label(class: 'form-check-label') { b.radio_button(class: 'form-check-input', disabled: disabled) + b.text } %>
+      <% end %>
+    <div>
+  </div>
+
   <div class="my-5">
     <%= f.submit nil, class: 'btn btn-primary mx-2 px-4' if !disabled %>
     <% if action_name == 'show' %>

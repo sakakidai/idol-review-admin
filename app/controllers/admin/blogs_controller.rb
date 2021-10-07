@@ -46,6 +46,6 @@ class Admin::BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:idol_id, :title, :piece_title, :piece_release_on, :outline, :thumbnail, :thumbnail_cache, :genre_list, :distributor_list, content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy])
+      params.require(:blog).permit(:idol_id, :title, :piece_title, :piece_release_on, :outline, :thumbnail, :thumbnail_cache, :genre_list, :distributor_list, :published, content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy])
     end
 end

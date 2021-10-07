@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_054118) do
+ActiveRecord::Schema.define(version: 2021_10_06_235053) do
 
   create_table "blog_content_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "blog_id", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_09_23_054118) do
     t.date "piece_release_on"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "published", default: false, null: false
     t.index ["idol_id"], name: "index_blogs_on_idol_id"
   end
 

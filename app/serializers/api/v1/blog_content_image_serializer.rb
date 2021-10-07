@@ -8,7 +8,7 @@ module Api
 
       def image
         if Rails.env.production?
-          object.thumbnail.thumb.url
+          object.image.thumb.url
         else
           Settings.app.base_url + object.image.thumb.url
         end

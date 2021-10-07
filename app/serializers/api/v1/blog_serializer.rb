@@ -24,7 +24,7 @@ module Api
       end
 
       def shot_outline
-        object.outline.truncate(100, omission: '...continue')
+        object.outline.truncate(100, omission: '...続く')
       end
     end
   end

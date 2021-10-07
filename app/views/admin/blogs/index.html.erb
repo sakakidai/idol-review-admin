@@ -8,6 +8,7 @@
       <th scope="col" width="260">thumbnail</th>
       <th scope="col">Piece Title</th>
       <th scope="col">Outline</th>
+      <th scope="col">Published</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
         <% end %>
         <%= tag.td blog.piece_title %>
         <%= tag.td blog.outline %>
+        <%= tag.td blog.published ? 'Publish' : 'Unpublish', class: "#{blog.published ? 'text-primary' : 'text-danger'}" %>
       <% end %>
     <% end %>
   </tbody>
