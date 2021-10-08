@@ -10,6 +10,7 @@ module Api
 
       belongs_to :idol
       has_many :content_images, serializer: Api::V1::BlogContentImageSerializer
+      has_many :distributors, if: -> { @instance_options[:template] == 'show' }
 
       def thumbnail
         if Rails.env.production?

@@ -63,6 +63,20 @@
   </div>
 
   <div class="mb-3">
+    <%= tag.label 'Distributors', class: "form-label fs-5" %>
+    <div id='distributors', class="row">
+      <%= f.fields_for :distributors do |distributor| %>
+        <%= render 'distributor_fields', {f: distributor, disabled: disabled} %>
+      <% end %>
+      <% if !disabled %>
+        <div class='links my-3'>
+          <%= link_to_add_association 'Add', f, :distributors, class: 'btn btn-primary mx-2 px-4', render_options: {locals: {disabled: disabled}} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
     <%= tag.label 'Published?', class: "form-label fs-5" %>
     <div style="display:block;">
       <%= f.collection_radio_buttons :published, [[true, 'publish'], [false, 'unpublish']], :first, :last do |b| %>

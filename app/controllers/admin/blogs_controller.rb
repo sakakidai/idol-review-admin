@@ -6,14 +6,17 @@ class Admin::BlogsController < ApplicationController
   end
 
   def show
+    @blog.distributors.build if @blog.distributors.blank?
   end
 
   def new
     @blog = Blog.new(idol_id: params[:idol_id])
     @blog.content_images.build
+    @blog.distributors.build
   end
 
   def edit
+    @blog.distributors.build if @blog.distributors.blank?
   end
 
   def create
@@ -46,6 +49,19 @@ class Admin::BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:idol_id, :title, :piece_title, :piece_release_on, :outline, :thumbnail, :thumbnail_cache, :genre_list, :distributor_list, :published, content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy])
+      params.require(:blog).permit(
+        :idol_id,
+        :title,
+        :piece_title,
+        :piece_release_on,
+        :outline,
+        :thumbnail,
+        :thumbnail_cache,
+        :genre_list,
+        :distributor_list,
+        :published,
+        {content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy]},
+        {distributors_attributes: [:id, :name, :url, :_destroy]}
+      )
     end
 end

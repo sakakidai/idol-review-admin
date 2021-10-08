@@ -1,0 +1,15 @@
+<div class='nested-fields col-sm-6 col-md-4'>
+  <div class="field">
+    <div class="mb-3">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', disabled: disabled %>
+    </div>
+    <div class="mb-3">
+      <%= f.label :url %>
+      <%= f.text_field :url, class: 'form-control', disabled: disabled %>
+    </div>
+  </div>
+  <% if !disabled %>
+    <%= link_to_remove_association "Delete", f, class: "btn btn-danger mx-2 px-4" %>
+  <% end %>
+</div>
