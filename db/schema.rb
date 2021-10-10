@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_122548) do
+ActiveRecord::Schema.define(version: 2021_10_10_115407) do
 
   create_table "blog_content_images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "blog_id", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_122548) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "age"
+    t.integer "publish_blogs_count", default: 0, null: false
   end
 
   create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

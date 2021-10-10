@@ -14,6 +14,7 @@ class Idol < ApplicationRecord
   before_create :set_calculate_age
 
   def set_calculate_age
+    return if birth_date.blank?
     self.age = (Date.today.strftime('%Y%m%d').to_i - birth_date.strftime('%Y%m%d').to_i) / 10000
   end
 

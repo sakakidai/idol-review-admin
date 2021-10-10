@@ -17,6 +17,7 @@ class Admin::IdolsController < ApplicationController
 
   def create
     @idol = Idol.new(idol_params)
+    @idol.set_calculate_age
 
     if @idol.save
       redirect_to admin_idol_path(@idol), flash: {success: "Idol was successfully created."}

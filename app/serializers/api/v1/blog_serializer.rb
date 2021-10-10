@@ -4,7 +4,7 @@ module Api
       attributes :id, :idol_id, :title, :piece_title, :piece_release_on, :created_at
       attribute :thumbnail
       attribute :outline, if: -> {@instance_options[:template] == 'show'}
-      attribute :shot_outline, if: -> {@instance_options[:template] == 'index'}
+      attribute :shot_outline
       attribute(:genre_list) { object.genre_list }
       attribute(:distributor_list) { object.distributor_list}
 
