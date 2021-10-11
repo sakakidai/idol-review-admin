@@ -14,23 +14,17 @@ module Api
       has_many :distributors, if: -> { @instance_options[:template] == 'show' }
 
       def thumbnail
-        if Rails.env.production?
-          object.thumbnail.thumb.url
+        if @instance_options[:template] == 'index'
+          object.thumbnail.list_item.url
         else
-          if @instance_options[:template] == 'index'
-            Settings.app.base_url + object.thumbnail.list_item.url
-          else
-            Settings.app.base_url + object.thumbnail.thumb.url
-          end
+          object.thumbnail.thumb.url
         end
       end
 
       def piece_image
-        if Rails.env.production?
-          object.piece_image.thumb.url
-        else
-          Settings.app.base_url + object.thumbnail.thumb.url
-        end
+        return if object.piece_image.file.nil?
+
+        object.piece_image.thumb.url
       end
 
       def shot_outline

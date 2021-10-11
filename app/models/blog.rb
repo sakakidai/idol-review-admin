@@ -1,7 +1,7 @@
 class Blog < ApplicationRecord
   IMAGE_UPLOAD_LIMIT = 5
 
-  after_save :publish_blogs_count
+  after_create :publish_blogs_count
 
   mount_uploader :thumbnail, BlogThumbnailUploader
   mount_uploader :piece_image, BlogPieceImageUploader
@@ -35,6 +35,6 @@ class Blog < ApplicationRecord
   end
 
   def publish_blogs_count
-    idol.update!(publish_blogs_count: idol.blogs.size)
+    idol.update!(publish_blogs_count: idol.blogs.where(published: true).size)
   end
 end

@@ -7,11 +7,7 @@ module Api
       belongs_to :blog
 
       def image
-        if Rails.env.production?
-          object.image.thumb.url
-        else
-          Settings.app.base_url + object.image.thumb.url
-        end
+        object.image.thumb.url
       end
     end
   end
