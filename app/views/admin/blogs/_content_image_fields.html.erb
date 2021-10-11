@@ -6,7 +6,7 @@
       <%= tag.div class: 'preview_wrap' do %>
         <%= image_tag content_image.image.thumb.url, class: 'img-fluid preview', style: "#{disabled ? 'pointer-events: none;' : ''}", width: 400, height: 225 %>
       <% end %>
-      <%= f.file_field :image, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => BlogContentImageUploader.default_url %>
+      <%= f.file_field :image, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => content_image.image.default_url %>
       <%= f.hidden_field :image_cache %>
       <%= tag.span content_image.image.identifier || 'No Image', class: 'text-secondary preview_filename' %>
     <% end %>

@@ -3,6 +3,7 @@ module Api
     class BlogSerializer < ActiveModel::Serializer
       attributes :id, :idol_id, :title, :piece_title, :piece_release_on, :created_at
       attribute :thumbnail
+      attribute :piece_image, if: -> {instance_options[:template] == 'show'}
       attribute :outline, if: -> {@instance_options[:template] == 'show'}
       attribute :shot_outline
       attribute(:genre_list) { object.genre_list }
@@ -21,6 +22,14 @@ module Api
           else
             Settings.app.base_url + object.thumbnail.thumb.url
           end
+        end
+      end
+
+      def piece_image
+        if Rails.env.production?
+          object.piece_image.thumb.url
+        else
+          Settings.app.base_url + object.thumbnail.thumb.url
         end
       end
 

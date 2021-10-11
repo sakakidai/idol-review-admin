@@ -57,6 +57,8 @@ class Admin::BlogsController < ApplicationController
         :outline,
         :thumbnail,
         :thumbnail_cache,
+        :piece_image,
+        :piece_image_cache,
         :genre_list,
         :distributor_list,
         :published,
