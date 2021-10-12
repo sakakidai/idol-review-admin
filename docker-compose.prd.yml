@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  app:
+    hostname: 'app'
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prd
+    command: bundle exec foreman start
+    working_dir: /app
+    tty: true
+    environment:
+      MYSQL_USERNAME: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_HOST: ${DB_HOST}
+      TZ: Asia/Tokyo
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/app
+      - sockets:${PUMA_SOCKET_PATH}
+      - bundle:/app/vendor/bundle
+      - node_modules:/app/node_modules
+
+  mysql:
+    image: 'mysql:8.0'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      TZ: Asia/Tokyo
+    ports:
+      - '3307:3307'
+    command: --port 3307
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./containers/nginx/Dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - sockets:${PUMA_SOCKET_PATH}
+    depends_on:
+      - app
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6380:6380"
+    command: --port 6380
+    volumes:
+      - "redis-data:/data"
+    environment:
+      TZ: Asia/Tokyo
+
+volumes:
+  mysql-data:
+  sockets:
+  redis-data:
+  bundle:
+  node_modules:
