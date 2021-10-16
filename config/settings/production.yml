@@ -1,5 +1,8 @@
 app:
-  base_url: ''
+  base_url: 'http://localhost:3001'
 sidekiq:
-  redis_host: ''
-  redis_port: ''
+  redis_host: 'redis'
+  redis_port: <%= ENV.fetch("REDIS_PORT") { 6380 } %>
+aws:
+  access_key_id: <%= Rails.application.credentials.aws[:access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.aws[:secret_access_key] %>

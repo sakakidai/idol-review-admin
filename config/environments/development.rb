@@ -76,5 +76,5 @@ Rails.application.configure do
 
   config.log_level = :debug
 
-  config.hosts << 'app-api'
+  config.hosts << 'puma'
 end

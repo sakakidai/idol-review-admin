@@ -13,8 +13,8 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.consider_all_requests_local       = true
+  config.action_controller.perform_caching = false
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
@@ -28,7 +28,9 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.debug = true
+  config.assets.compile = true
+  config.public_file_server.enabled = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
@@ -50,7 +52,8 @@ Rails.application.configure do
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  # config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]

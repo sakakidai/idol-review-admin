@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap';
-import '../stylesheets/application';
+import '../stylesheets/application.scss';
 import '@yaireo/tagify';
 import '@yaireo/tagify/src/tagify.scss';
 import 'jquery';

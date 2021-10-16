@@ -10,12 +10,12 @@ services:
     working_dir: /app
     tty: true
     environment:
+      RAILS_ENV: ${RAILS_ENV}
       MYSQL_USERNAME: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_HOST: ${DB_HOST}
+      MYSQL_PORT: ${DB_PORT}
       TZ: Asia/Tokyo
-    ports:
-      - '3001:3001'
     depends_on:
       - mysql
       - redis
@@ -32,10 +32,11 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_PORT: ${DB_PORT}
       TZ: Asia/Tokyo
     ports:
-      - '3307:3307'
-    command: --port 3307
+      - '${DB_PORT}:${DB_PORT}'
+    command: --port ${DB_PORT}
     volumes:
       - mysql-data:/var/lib/mysql
 
@@ -44,17 +45,21 @@ services:
       context: .
       dockerfile: ./containers/nginx/Dockerfile
     ports:
-      - '80:80'
+      - '${NGINX_PORT}:${NGINX_PORT}'
     volumes:
       - sockets:${PUMA_SOCKET_PATH}
     depends_on:
       - app
+    environment:
+      TZ: Asia/Tokyo
+      PUMA_SOCKET_PATH: ${PUMA_SOCKET_PATH}
+      NGINX_PORT: ${NGINX_PORT}
 
   redis:
     image: "redis:latest"
     ports:
-      - "6380:6380"
-    command: --port 6380
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: --port ${REDIS_PORT}
     volumes:
       - "redis-data:/data"
     environment:

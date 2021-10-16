@@ -4,13 +4,9 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-# アプリケーションディレクトリ
 app_dir = File.expand_path("../../", __FILE__)
-# ソケット通信を図る為bindでURI指定
 bind "unix://#{app_dir}/tmp/sockets/puma.sock"
-# PIDファイル所在(プロセスID)
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
-
+pidfile "tmp/pids/server.pid"
 max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count

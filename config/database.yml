@@ -53,3 +53,7 @@ test:
 production:
   <<: *default
   database: idol_review_production
+  username: <%= Rails.application.credentials.mysql[:user] %>
+  password: <%= Rails.application.credentials.mysql[:password] %>
+  host: <%= Rails.application.credentials.mysql[:host] %>
+  port: <%= Rails.application.credentials.mysql[:port] %>
