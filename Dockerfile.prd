@@ -23,6 +23,4 @@ RUN yarn install
 
 COPY --chown=rails . /app
 
-# RUN bundle exec rails assets:precompile
-
 CMD ["bin/rails", "s", "-b", "0.0.0.0", "-p", "3001"]
