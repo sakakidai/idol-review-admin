@@ -5,4 +5,4 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 RUN echo "alias ll='ls -lG'" >> /root/.bashrc
-COPY ./containers/nginx/puma.conf.template /etc/nginx/templates/puma.conf.template
+COPY ./containers/nginx/puma.conf.template /etc/nginx/templates/default.conf.template
