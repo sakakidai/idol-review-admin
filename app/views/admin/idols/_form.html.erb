@@ -32,7 +32,7 @@
   </div>
   <div class="mb-3">
     <%= f.label :comment, class: 'form-label' %>
-    <%= f.text_area :comment, class: 'form-control', placeholder: 'コメント', disabled: disabled %>
+    <%= f.text_area :comment, class: 'form-control', placeholder: 'コメント', rows: 10, disabled: disabled %>
   </div>
   <div class="my-5">
     <%= f.submit nil, class: 'btn btn-primary mx-2 px-4' if !disabled %>

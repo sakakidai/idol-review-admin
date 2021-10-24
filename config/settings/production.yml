@@ -1,8 +1,9 @@
 app:
-  base_url: 'http://localhost:3001'
+  base_url: 'https://admin.idol-review.com'
 sidekiq:
   redis_host: 'redis'
   redis_port: <%= ENV.fetch("REDIS_PORT") { 6380 } %>
 aws:
+  s3_url: 'https://idol-preview-production.s3.ap-northeast-1.amazonaws.com'
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>

@@ -1,7 +1,7 @@
 class Blog < ApplicationRecord
   IMAGE_UPLOAD_LIMIT = 5
 
-  after_create :publish_blogs_count
+  after_save :publish_blogs_count
 
   mount_uploader :thumbnail, BlogThumbnailUploader
   mount_uploader :piece_image, BlogPieceImageUploader
