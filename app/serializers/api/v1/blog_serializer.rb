@@ -1,7 +1,7 @@
 module Api
   module V1
     class BlogSerializer < ActiveModel::Serializer
-      attributes :id, :idol_id, :title, :piece_title, :piece_release_on, :created_at
+      attributes :id, :idol_id, :title, :piece_title, :piece_release_on, :idol_age, :created_at
       attribute :thumbnail
       attribute :piece_image, if: -> {instance_options[:template] == 'show'}
       attribute :outline, if: -> {@instance_options[:template] == 'show'}
@@ -24,11 +24,11 @@ module Api
       def piece_image
         return if object.piece_image.file.nil?
 
-        object.piece_image.thumb.url
+        object.piece_image.url
       end
 
       def shot_outline
-        object.outline.truncate(100, omission: '...続く')
+        object.outline.truncate(60, omission: '...続く')
       end
     end
   end

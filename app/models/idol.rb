@@ -11,7 +11,7 @@ class Idol < ApplicationRecord
   validates :image, presence: true
   validate :image_size
 
-  before_create :set_calculate_age
+  before_save :set_calculate_age, if: -> {will_save_change_to_attribute?("birth_date")}
 
   def set_calculate_age
     return if birth_date.blank?

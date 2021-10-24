@@ -41,7 +41,7 @@
     <%= tag.label 'Piece Image', class: "form-label fs-5", style: "display:block;" %>
     <%= f.label :piece_image do %>
       <%= tag.div class: 'preview_wrap' do %>
-        <%= image_tag blog.piece_image.thumb.url, class: 'preview', style: "#{disabled ? 'pointer-events: none;' : ''}", width: 800, height: 450 %>
+        <%= image_tag blog.piece_image.url, class: 'preview', style: "#{disabled ? 'pointer-events: none;' : ''}", width: 800, height: 450 %>
       <% end %>
       <%= f.file_field :piece_image, class: 'form-control preview_form', style: 'display:none', disabled: disabled, 'data-default-url' => blog.piece_image.default_url %>
       <%= f.hidden_field :thumbnail_cache %>

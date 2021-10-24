@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
   if Rails.env.production?
     config.fog_directory  = 'idol-review-production'
   else
-    config.fog_directory  = 'idol-preview-development'
+    config.fog_directory  = 'idol-review-development'
   end
   config.fog_public = true
 
@@ -16,7 +16,7 @@ CarrierWave.configure do |config|
     region: 'ap-northeast-1'
   }
   config.storage = :fog
-  config.cache_storage = :file
+  config.cache_storage = :fog
 end
 
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/

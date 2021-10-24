@@ -1,6 +1,7 @@
 class Blog < ApplicationRecord
   IMAGE_UPLOAD_LIMIT = 5
 
+  before_save :set_idol_age
   after_save :publish_blogs_count
 
   mount_uploader :thumbnail, BlogThumbnailUploader
@@ -35,6 +36,14 @@ class Blog < ApplicationRecord
   end
 
   def publish_blogs_count
+    return unless saved_change_to_attribute?("published")
+
     idol.update!(publish_blogs_count: idol.blogs.where(published: true).size)
+  end
+
+  def set_idol_age
+    return unless will_save_change_to_attribute?("piece_release_on")
+
+    self.idol_age = (piece_release_on.strftime('%Y%m%d').to_i - idol.birth_date.strftime('%Y%m%d').to_i) / 10000
   end
 end

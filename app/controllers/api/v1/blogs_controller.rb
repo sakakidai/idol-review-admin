@@ -4,7 +4,7 @@ module Api
       before_action :set_blog, only: %i[ show ]
 
       def index
-        blogs = params[:tag].blank? ? Blog.where(published: true).all : Blog.where(published: true).tagged_with(params[:tag])
+        blogs = params[:tag].blank? ? Blog.where(published: true).all.order(id: :desc) : Blog.where(published: true).tagged_with(params[:tag]).order(id: :desc)
         render json: blogs, each_serializer: Api::V1::BlogSerializer
       end
 
