@@ -60,7 +60,7 @@ class Admin::BlogsController < ApplicationController
         :piece_image,
         :piece_image_cache,
         :genre_list,
-        :distributor_list,
+        :sale_list,
         :published,
         {content_images_attributes: [:id, :image, :image_cache, :comment, :_destroy]},
         {distributors_attributes: [:id, :name, :url, :_destroy]}

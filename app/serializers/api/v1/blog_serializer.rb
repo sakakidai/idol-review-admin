@@ -7,7 +7,7 @@ module Api
       attribute :outline, if: -> {@instance_options[:template] == 'show'}
       attribute :shot_outline
       attribute(:genre_list) { object.genre_list }
-      attribute(:distributor_list) { object.distributor_list}
+      attribute(:sale_list) { object.sale_list}
 
       belongs_to :idol
       has_many :content_images, serializer: Api::V1::BlogContentImageSerializer

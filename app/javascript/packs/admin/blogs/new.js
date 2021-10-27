@@ -9,11 +9,11 @@ document.addEventListener("turbolinks:load", () => {
   });
 
   const GenreInput = document.querySelector("input[name='blog[genre_list]']");
-  const DistributorInput = document.querySelector("input[name='blog[distributor_list]']");
+  const SaleInput = document.querySelector("input[name='blog[sale_list]']");
   new Tagify(GenreInput, {
     originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
   });
-  new Tagify(DistributorInput, {
+  new Tagify(SaleInput, {
     originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
   });
 });
