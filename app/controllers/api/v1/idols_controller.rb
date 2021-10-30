@@ -7,8 +7,8 @@ module Api
       end
 
       def show
-        idols = Idol.find(params[:id])
-        render json: idols, serializer: Api::V1::IdolSerializer
+        idol = Idol.find(params[:id])
+        render json: idol, serializer: Api::V1::IdolSerializer
       end
     end
   end
