@@ -17,7 +17,7 @@
         <%= tag.th blog.id, scope: "row" %>
         <%= tag.td blog.title %>
         <%= tag.td do %>
-          <%= image_tag blog.thumbnail.url, class: 'img-fluid' %>
+          <%= image_tag blog.thumbnail.thumb.url, class: 'img-fluid' %>
         <% end %>
         <%= tag.td blog.piece_title %>
         <%= tag.td blog.outline %>

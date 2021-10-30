@@ -24,7 +24,7 @@ module Api
       def piece_image
         return if object.piece_image.file.nil?
 
-        object.piece_image.url
+        object.piece_image.thumb.url
       end
 
       def shot_outline

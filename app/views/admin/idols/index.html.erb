@@ -16,7 +16,7 @@
         <%= tag.th idol.id, scope: "row" %>
         <%= tag.td idol.name %>
         <%= tag.td do %>
-          <%= image_tag idol.image.url, class: 'img-fluid' %>
+          <%= image_tag idol.image.thumb.url, class: 'img-fluid' %>
         <% end %>
         <%= tag.td idol.birth_date %>
         <%= tag.td idol.comment %>

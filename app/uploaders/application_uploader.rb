@@ -1,5 +1,6 @@
 class ApplicationUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+  process convert: 'webp'
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -10,14 +11,18 @@ class ApplicationUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    Settings.app.base_url + '/images/noimage.png'
+    Settings.app.base_url + '/images/noimage.webp'
   end
 
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg png webp)
   end
 
   def content_type_allowlist
     [/image\//]
+  end
+
+  def url
+    super.sub(/\.jpg|\.jpeg|\.png/, '.webp')
   end
 end
