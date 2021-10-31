@@ -1,10 +1,11 @@
 module Api
   module V1
     class BlogsController < ApiController
-      before_action :set_blog, only: %i[ show ]
+      before_action :set_blogs, only: %i[index show]
+      before_action :set_blog, only: %i[show]
 
       def index
-        blogs = params[:tag].blank? ? Blog.where(published: true).all.order(id: :desc) : Blog.where(published: true).tagged_with(params[:tag]).order(id: :desc)
+        blogs = params[:tag].blank? ? @blogs : @blogs.tagged_with(params[:tag])
         render json: blogs, each_serializer: Api::V1::BlogSerializer
       end
 
@@ -13,8 +14,12 @@ module Api
       end
 
       private
+      def set_blogs
+        @blogs = Blog.where(published: true).all.order(id: :desc)
+      end
+
       def set_blog
-        @blog = Blog.where(published: true).find(params[:id])
+        @blog = @blogs.find(params[:id])
       end
     end
   end

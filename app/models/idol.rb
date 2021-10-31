@@ -13,6 +13,10 @@ class Idol < ApplicationRecord
 
   before_save :set_calculate_age, if: -> {will_save_change_to_attribute?("birth_date")}
 
+  scope :having_blogs, -> {
+    Idol.joins(:blogs).distinct
+  }
+
   def set_calculate_age
     return if birth_date.blank?
     self.age = (Date.today.strftime('%Y%m%d').to_i - birth_date.strftime('%Y%m%d').to_i) / 10000

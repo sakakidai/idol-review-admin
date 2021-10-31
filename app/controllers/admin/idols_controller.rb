@@ -2,7 +2,7 @@ class Admin::IdolsController < ApplicationController
   before_action :set_idol, only: %i[ show edit update destroy ]
 
   def index
-    @idols = Idol.all
+    @idols = Idol.all.order(id: :desc)
   end
 
   def show
