@@ -51,12 +51,10 @@ module IdolReviewAdmin
     end
 
     # Set log
-    config.log_formatter = Logger::Formatter.new
+    config.log_formatter = ::Logger::Formatter.new
     config.log_tags = [->(req){req.uuid.first(10)}, :remote_ip]
-    config.paths['log'] = "log/#{Rails.env}_#{ENV['HOSTNAME']}_web.log"
-    logger = ActiveSupport::Logger.new(config.paths['log'].first)
-    logger.formatter = Logger::Formatter.new
-
+    config.log_level = :debug
+    config.paths["log"] = "log/#{Rails.env}_#{ENV['HOSTNAME']}_web.log"
 
     # Set adapter
     config.active_job.queue_adapter = :sidekiq

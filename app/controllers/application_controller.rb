@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
-  before_action :block_foreign_hosts
+  before_action :block_foreign_hosts if Rails.env.production?
 
   private
 
@@ -11,9 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   def whitelisted?(ip)
-    Rails.logger.info('====================')
-    Rails.logger.info(request.ip)
-    Rails.logger.info('====================')
     if [ENV["MY_IP"]].include?(ip)
       return true
     else

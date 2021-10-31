@@ -16,6 +16,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_HOST: ${DB_HOST}
       MYSQL_PORT: ${DB_PORT}
+      TZ: Asia/Tokyo
     ports:
       - '3001:3001'
     depends_on:
