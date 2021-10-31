@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
 
   def whitelisted?(ip)
     Rails.logger.info('====================')
-    Rails.logger.info(request.env['HTTP_X_FORWARDED_FOR'])
+    Rails.logger.info(request.env['X-Forwarded-Host'])
+    Rails.logger.info('====================')
+    Rails.logger.info(request.env)
     Rails.logger.info('====================')
     if [ENV["MY_IP"]].include?(ip)
       return true
@@ -22,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def block_foreign_hosts
-    if whitelisted?(request.env['HTTP_X_FORWARDED_FOR'])
+    if whitelisted?(request.env['X-Forwarded-Host'])
       return false
     else
       render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
