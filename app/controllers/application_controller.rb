@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
-  before_action :block_foreign_hosts if Rails.env.production?
+  before_action :block_foreign_hosts
 
   private
 
@@ -12,9 +12,7 @@ class ApplicationController < ActionController::Base
 
   def whitelisted?(ip)
     Rails.logger.info('====================')
-    Rails.logger.info(request.env['X-Forwarded-Host'])
-    Rails.logger.info('====================')
-    Rails.logger.info(request.env)
+    Rails.logger.info(request.ip)
     Rails.logger.info('====================')
     if [ENV["MY_IP"]].include?(ip)
       return true
@@ -24,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def block_foreign_hosts
-    if whitelisted?(request.env['X-Forwarded-Host'])
+    if whitelisted?(request.ip)
       return false
     else
       render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found

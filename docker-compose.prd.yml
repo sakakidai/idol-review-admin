@@ -46,7 +46,9 @@ services:
       context: .
       dockerfile: ./containers/nginx/Dockerfile
     ports:
-      - '${NGINX_PORT}:${NGINX_PORT}'
+      - target: ${NGINX_PORT}
+        published: ${NGINX_PORT}
+        mode: host # macは対応していないみたい
     volumes:
       - sockets:${PUMA_SOCKET_PATH}
     depends_on:
