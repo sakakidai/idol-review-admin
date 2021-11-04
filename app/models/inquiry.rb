@@ -4,5 +4,5 @@ class Inquiry < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 10 }
   validates :email, presence: true, length: { maximum: 100 }, format: { with: VALID_EMAIL_REGEX }
   validates :subject, presence: true, length: { maximum: 100 }
-  calidates :content, presence: true, length: { maximum: 400 }
+  validates :content, presence: true, length: { maximum: 400 }
 end

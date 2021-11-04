@@ -1,5 +1,7 @@
 app:
   base_url: 'https://admin.idol-review.com'
+customer_app:
+  base_url: 'https://idol-review.com'
 sidekiq:
   redis_host: 'redis'
   redis_port: <%= ENV.fetch("REDIS_PORT") { 6380 } %>

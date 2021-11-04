@@ -1,5 +1,7 @@
 app:
   base_url: 'http://localhost:3001'
+customer_app:
+  base_url: 'http://localhost:3000'
 sidekiq:
   redis_host: 'redis'
   redis_port: <%= ENV.fetch("REDIS_PORT") { 6380 } %>
