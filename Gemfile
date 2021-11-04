@@ -45,6 +45,8 @@ group :development do
 
   gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -61,3 +63,4 @@ gem 'sidekiq-scheduler'
 gem 'fog-aws'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'rexml', '~> 3.2', '>= 3.2.4'
