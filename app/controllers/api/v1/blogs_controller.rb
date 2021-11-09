@@ -1,3 +1,4 @@
+require 'pagy/extras/metadata'
 module Api
   module V1
     class BlogsController < ApiController
@@ -6,7 +7,16 @@ module Api
 
       def index
         blogs = params[:tag].blank? ? @blogs : @blogs.tagged_with(params[:tag])
-        render json: blogs, each_serializer: Api::V1::BlogSerializer
+        pagy, blogs = pagy(blogs, page: params[[:page]])
+        serialized_blogs = ActiveModelSerializers::SerializableResource.new(blogs, each_serializer: Api::V1::BlogSerializer)
+        render json: {
+          blogs: serialized_blogs,
+          pagination: {
+            currentPage: pagy.page,
+            totalCount: pagy.count,
+            totalPages: pagy.pages,
+          }
+        }
       end
 
       def show
